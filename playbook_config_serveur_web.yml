@@ -1,0 +1,18 @@
+---
+- name: "Configuration du server web"
+  hosts: serverweb
+  roles:
+    - role: "install_wordpress"
+    - role: "config_nginx"
+    - role: "config_wordpress"
+    - role: "config_php"
+
+- name: "Creation de la BDD"
+  hosts: database
+  roles:
+    - role: "create_database"
+
+- name: "Modification de wp-config.php"
+  hosts: serverweb
+  roles:
+    - role: "modif_wpconf"

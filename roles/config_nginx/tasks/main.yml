@@ -1,0 +1,47 @@
+---
+
+#CONFIGURATION DE NGINX
+
+- name: "activer option server tokens dans le fichier de conf"
+  ansible.builtin.replace:
+    path: /etc/nginx/nginx.conf
+    regexp: '# server_tokens'
+    replace: 'server_tokens'
+
+- name: "copier le template vhost et modifier son nom avec la variable nomsite"
+  copy:
+    src: /etc/ansible/roles/config_nginx/files/sitewp
+    dest: /etc/nginx/sites-available/{{ extra1 }}
+
+- name: "remplacer les données relatives à php-wp"
+  ansible.builtin.replace:
+    path: /etc/nginx/sites-available/{{ extra1 }}
+    regexp: '(\.*)php-wp(\.*)'
+    replace: '\1php-wp-{{ extra1 }}\2'
+
+- name: "remplacer les données relatives à sitewp pour la socket"
+  ansible.builtin.replace:
+    path: /etc/nginx/sites-available/{{ extra1 }}
+    after: '    server            unix:/var/run/'
+    before: '.sock'
+    regexp: 'sitewp'
+    replace: '{{ extra1 }}'
+
+- name: "remplacer les données relatives à sitewp pour le nom du serveur"
+  ansible.builtin.replace:
+    path: /etc/nginx/sites-available/{{ extra1 }}
+    after: '    server_name       '
+    before: '.serverweb'
+    regexp: 'sitewp'
+    replace: '{{ extra1 }}'
+
+- name: "remplacer les données relatives à sitewp pour le chemin racine"
+  ansible.builtin.replace:
+    path: /etc/nginx/sites-available/{{ extra1 }}
+    after: '    root              /var/www/'
+    before: '.serverweb'
+    regexp: 'sitewp'
+    replace: '{{ extra1 }}'
+
+- name: "creation du lien symbolique"
+  command: ln -s /etc/nginx/sites-available/{{ extra1 }} /etc/nginx/sites-enabled/
