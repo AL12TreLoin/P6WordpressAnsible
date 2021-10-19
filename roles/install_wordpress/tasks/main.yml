@@ -1,0 +1,15 @@
+---
+
+# installation de wordpress via https
+
+- name: "wordpress installation"
+  get_url:
+    url: https://fr.wordpress.org/latest-fr_FR.tar.gz
+    dest: /var/tmp/wordpress.tar.gz
+    validate_certs: no
+
+- name: "wordpress decompression"
+  unarchive:
+    src: /var/tmp/wordpress.tar.gz
+    dest: /var/www/
+    copy: no

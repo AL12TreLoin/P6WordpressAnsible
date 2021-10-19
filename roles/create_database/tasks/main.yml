@@ -1,0 +1,21 @@
+---
+- name: "Create a new database"
+  mysql_db:
+    name: "{{ extra1 }}"
+    state: present
+
+- name: "Create a new user"
+  mysql_user:
+    name: "{{ extra2 }}"
+    password: "{{ extra3 }}"
+    host: 192.168.106.2
+    priv: '{{ extra1 }}.*:ALL,GRANT'
+    state: present
+
+- name: "Query flush"
+  community.mysql.mysql_query:
+    login_db: "{{ extra1 }}"
+    query: FLUSH PRIVILEGES
+
+- name: Unconditionally reboot the machine with all defaults
+  reboot:

@@ -1,0 +1,38 @@
+upstream php-wp {
+    server            unix:/var/run/sitewp.sock;
+}
+
+server {
+    listen            80;
+    listen            [::]:80;
+    server_name       sitewp.serverweb;
+
+    root              /var/www/sitewp.serverweb;
+
+    index             index.php;
+
+    location / {
+        try_files     $uri $uri/ /index.php?$args;
+    }
+
+    location = /favicon.ico {
+        log_not_found off;
+        access_log    off;
+    }
+
+    location = /robots.txt {
+        allow                    all;
+        log_not_found off;
+        access_log    off;
+    }
+
+    location ~ .php$ {
+        include       fastcgi.conf;
+        fastcgi_pass  php-wp;
+    }
+
+    location ~* .(js|css|png|jpg|jpeg|gif|ico)$ {
+        expires       max;
+        log_not_found off;
+    }
+}

@@ -1,0 +1,9 @@
+---
+- name: "Copie du repertoire Wordpress en le renommant avec la variable sitewp"
+  command: mv /var/www/wordpress /var/www/{{ extra1 }}.serverweb
+
+- name: "Modification du propriétaire du repertoire sitewp"
+  command: chown -R root:www-data /var/www/{{ extra1 }}.serverweb
+
+#- name: "Suppression des droits pour tous les autres utilisateurs"
+#  command: chmod -R o-rwx /var/www/{{ extra1 }}.serverweb
