@@ -5,10 +5,10 @@ sitewp = str(input("Quel sera le nom du site Wordpress ? "))
 userwp = str(input("Quel sera le nom son administrateur ? "))
 passwdwp = str(input("Quel sera le mot de passe de son administrateur ? "))
 
-print ("Vérification des données: ")
-print ("Le site est ",sitewp)
-print ("L'utilisateur est ",userwp)
-print ("Le mot de passe est ",passwdwp)
+#print ("Vérification des données: ")
+#print ("Le site est ",sitewp)
+#print ("L'utilisateur est ",userwp)
+#print ("Le mot de passe est ",passwdwp)
 
 extras = 'extra1=' + sitewp + ' extra2=' + userwp + ' extra3=' + passwdwp
 
