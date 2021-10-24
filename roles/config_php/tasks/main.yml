@@ -1,24 +1,24 @@
 ---
 - name: "copier le template pool php et modifier son nom avec la variable nomsite"
   copy:
-    src: /etc/ansible/roles/config_php/files/sitewp.conf
-    dest: /etc/php/7.3/fpm/pool.d/{{ extra1 }}.conf
+    src: /etc/ansible/roles/config_php/files/nomsite.conf
+    dest: /etc/php/7.3/fpm/pool.d/{{ varnomsite }}.conf
 
 - name: "remplacer le nom du pool"
   ansible.builtin.replace:
-    path: /etc/php/7.3/fpm/pool.d/{{ extra1 }}.conf
-    regexp: '(\.*)sitewp(\.*)'
-    replace: '\1{{ extra1 }}\2'
+    path: /etc/php/7.3/fpm/pool.d/{{ varnomsite }}.conf
+    regexp: '(\.*)nomsite(\.*)'
+    replace: '\1{{ varnomsite }}\2'
 
-- name: "remplacer les données relatives à sitewp pour la socket"
+- name: "remplacer les données relatives à nomsite pour la socket"
   ansible.builtin.replace:
-    path: /etc/php/7.3/fpm/pool.d/{{ extra1 }}.conf
+    path: /etc/php/7.3/fpm/pool.d/{{ varnomsite }}.conf
     after: 'listen = /var/run/'
     before: '.sock'
-    regexp: 'sitewp'
-    replace: '{{ extra1 }}'
+    regexp: 'nomsite'
+    replace: '{{ varnomsite }}'
 
 - name: "copier le template wp-config.php"
   copy:
     src: /etc/ansible/roles/config_php/files/wp-config.php
-    dest: /var/www/{{ extra1 }}.serverweb/wp-config.php
+    dest: /var/www/{{ varnomsite }}.serverweb/wp-config.php
