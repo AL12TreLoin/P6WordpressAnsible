@@ -1,5 +1,5 @@
 ---
-- name: restart mariadb
+- name: "Redémarrage du service MariaDb"
   service:
     name: mariadb
     state: restarted

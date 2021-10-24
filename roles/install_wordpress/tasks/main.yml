@@ -1,19 +1,19 @@
 ---
 
 # installation de wordpress via https
-- name: Check that the somefile.conf exists
+- name: "Vérification de la présence du dossier compressé Wordpress"
   stat:
     path: /var/tmp/wordpress.tar.gz
   register: stat_result
 
-- name: "wordpress installation"
+- name: "Téléchargement de Wordpress si cela n'est pas déjà fait"
   get_url:
     url: https://fr.wordpress.org/latest-fr_FR.tar.gz
     dest: /var/tmp/wordpress.tar.gz
     validate_certs: no
   when: not stat_result.stat.exists
 
-- name: "wordpress decompression"
+- name: "Décompression de l'archive Wordpress dans le dossier var"
   unarchive:
     src: /var/tmp/wordpress.tar.gz
     dest: /var/www/

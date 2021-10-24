@@ -1,5 +1,5 @@
 ---
-- name: "Configuration du server web"
+- name: "Configuration du server web avec Nginx, PHP et WordPress"
   hosts: serverweb
   roles:
     - role: "install_wordpress"
@@ -7,12 +7,12 @@
     - role: "config_wordpress"
     - role: "config_php"
 
-- name: "Creation de la BDD"
+- name: "Creation de la base de données avec MariaDb"
   hosts: database
   roles:
     - role: "create_database"
 
-- name: "Modification de wp-config.php"
+- name: "Modification de wp-config.php avec les variables de la base de données"
   hosts: serverweb
   roles:
     - role: "modif_wpconf"
