@@ -1,38 +1,31 @@
-Role Name
+config_nginx
 =========
 
-A brief description of the role goes here.
+Ce rôle va servir à activer l'option server tokens dans le fichier de configuration de Nginx sur le serveur web.
+Dans un second temps il va copier le vhost (template présent dans le sous-dossier files de ce rôle) dans le dossier sites-available de Nginx et modifier toutes les variables correspondantes au nom du site.
+Et enfin il va créer un lien symbolique vers le dossier sites-enabled.
 
-Requirements
+Pré-requis
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Nginx devra être installé sur le serveur web
 
-Role Variables
+Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+La variable "varnomsite" est récupérée via le script python qui va demander de saisir un nom pour le site web.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
+    - hosts: serverweb
       roles:
-         - { role: username.rolename, x: 42 }
+        - config_nginx
 
-License
+Licence
 -------
 
-BSD
+GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
-Author Information
+Auteur : AL12TreLoin
 ------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).

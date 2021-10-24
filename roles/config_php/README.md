@@ -1,38 +1,32 @@
-Role Name
+config_php
 =========
 
-A brief description of the role goes here.
+Ce rôle va servir à copier le template correspondant au pool du module PHP-FPM (présent dans le sous dossier files de ce rôle).
+Dans un second temps il va  modifier toutes les variables correspondantes au nom du site.
+Et enfin il va copier le template wp-config.php dans le dossier correspondant au site Wordpress renommé selon la variable nomsite et qui permettra l'asoiciation avec une future base de données MariaDb pour Wordpress.
 
-Requirements
+Pré-requis
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+PHP version 7.3 devra être installé sur le serveur web, ainsi que les modules suivants :
+php-cli php-mysql php-curl php-gd php-intl php-fpm
 
-Role Variables
+Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+La variable "varnomsite" est récupérée via le script python qui va demander de saisir un nom pour le site web.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
+    - hosts: serverweb
       roles:
-         - { role: username.rolename, x: 42 }
+        - config_php
 
-License
+Licence
 -------
 
-BSD
+GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
-Author Information
+Auteur : AL12TreLoin
 ------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
