@@ -1,10 +1,10 @@
 ---
-- name: "Create a new database"
+- name: "Création de la base de données ayant pour nom celui du site Wordpress"
   mysql_db:
     name: "{{ varnomsite }}"
     state: present
 
-- name: "Create a new user"
+- name: "Création du compte administrateur de cette base de données"
   mysql_user:
     name: "{{ varadminbdd }}"
     password: "{{ varpasswdbd }}"
@@ -12,10 +12,10 @@
     priv: '{{ varnomsite }}.*:ALL,GRANT'
     state: present
 
-- name: "Query flush"
+- name: "Activation des privilèges pour cette base de données"
   community.mysql.mysql_query:
     login_db: "{{ varnomsite }}"
     query: FLUSH PRIVILEGES
 
-- name: Unconditionally reboot the machine with all defaults
+- name: "Redémmarage du serveur de base de données"
   reboot:

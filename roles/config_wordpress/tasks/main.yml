@@ -1,9 +1,9 @@
 ---
-- name: "Copie du repertoire Wordpress en le renommant avec la variable nomsite"
+- name: "Copie du répertoire Wordpress dans le dossier var en le renommant avec la variable de nom du site"
   command: mv /var/www/wordpress /var/www/{{ varnomsite }}.serverweb
 
-- name: "Modification du propriétaire du repertoire nomsite"
+- name: "Modification du propriétaire de ce répertoire de root en www-data"
   command: chown -R root:www-data /var/www/{{ varnomsite }}.serverweb
 
-#- name: "Suppression des droits pour tous les autres utilisateurs"
-#  command: chmod -R o-rwx /var/www/{{ varnomsite }}.serverweb
+- name: "Suppression des droits pour tous les autres utilisateurs"
+  command: chmod -R o-rwx /var/www/{{ varnomsite }}.serverweb

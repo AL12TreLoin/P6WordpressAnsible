@@ -1,21 +1,21 @@
 ---
-- name: "Replace bdd name in wp-config.php"
+- name: "Remplacement du nom de la base de données dans wp-config.php"
   ansible.builtin.replace:
     path: /var/www/{{ varnomsite }}.serverweb/wp-config.php
     regexp: '(\.*)nombddsite(\.*)'
     replace: '\1{{ varnomsite }}\2'
 
-- name: "Replace user name in wp-config.php"
+- name: "Remplacement du nom de l'administrateur de la base de données dans wp-config.php"
   ansible.builtin.replace:
     path: /var/www/{{ varnomsite }}.serverweb/wp-config.php
     regexp: '(\.*)nombddadmin(\.*)'
     replace: '\1{{ varadminbdd }}\2'
 
-- name: "Replace password in wp-config.php"
+- name: "Remplacement du mot de passe de l'administrateur dans wp-config.php"
   ansible.builtin.replace:
     path: /var/www/{{ varnomsite }}.serverweb/wp-config.php
     regexp: '(\.*)motdepasse(\.*)'
     replace: '\1{{ varpasswdbd }}\2'
 
-- name: "test autre moyen de rebooter"
+- name: "Redémarrage du serveur web"
   command: reboot
