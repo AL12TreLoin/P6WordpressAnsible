@@ -4,7 +4,6 @@ import subprocess
 
 print ("Avant de démarrer la configuration du serveur web, merci de répondre à ces questions: ")
 sitewp = str(input("Saisir le nom du site WordPress :"))
-
 userwp = str(input("Saisir le nom de l'administrateur de la base de données :"))
 passwdwp = getpass.getpass(prompt='Saisir un mot de passe pour cette base de données et valider par Entrée :')
 
