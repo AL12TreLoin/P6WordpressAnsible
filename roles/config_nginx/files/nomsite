@@ -1,13 +1,13 @@
 upstream php-wp {
-    server            unix:/var/run/sitewp.sock;
+    server            unix:/var/run/nomsite.sock;
 }
 
 server {
     listen            80;
     listen            [::]:80;
-    server_name       sitewp.serverweb;
+    server_name       nomsite.serverweb;
 
-    root              /var/www/sitewp.serverweb;
+    root              /var/www/nomsite.serverweb;
 
     index             index.php;
 
