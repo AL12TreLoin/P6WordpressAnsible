@@ -69,7 +69,7 @@ Ce fichier yaml est le playbook qui va lancer l'un après l'autre les différent
 # Sur le serveur web :
 - installation de Nginx
 - installation de python3
-- installation de PHP 7.3 et de ses modules : php-cli php-mysql php-curl php-gd php-intl
+- installation de PHP 7.3 et de ses modules : php-cli php-mysql php-curl php-gd php-intl php-fpm
 - installation du serveur OpenSSH : configurer en mode échange de clés  (avec un accès unique pour l'utilisateur dédié user)
 - création d'un utilisateur dédié "user" avec les droits SUDO
 - configuration réseau ipv4 : 192.168.106.2 avec comme passerelle le node manager 192.168.106.1
