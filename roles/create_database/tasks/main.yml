@@ -17,5 +17,5 @@
     login_db: "{{ varnomsite }}"
     query: FLUSH PRIVILEGES
 
-- name: "Redémmarage du serveur de base de données"
+- name: "Redémarrage du serveur de base de données"
   reboot:
