@@ -83,3 +83,11 @@ Ce fichier yaml est le playbook qui va lancer l'un après l'autre les différent
 - création d'un utilisateur dédié "user" avec les droits SUDO
 - configuration réseau ipv4 : 192.168.106.3 avec comme passerelle le node manager 192.168.106.1
 - le hostname sera database
+
+Licence
+-------
+
+GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+
+Auteur : AL12TreLoin
+------------------
